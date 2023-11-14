@@ -9,8 +9,8 @@ class Marketing extends Model
 {
     use HasFactory;
 
-    public function sale()
+    public function transaction()
     {
-        return $this->hasMany(Sale::class, 'marketing_id', 'id');
+        return $this->hasMany(Transaction::class, 'marketing_id', 'id');
     }
 }
