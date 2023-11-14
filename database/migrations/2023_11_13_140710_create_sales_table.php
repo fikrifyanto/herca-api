@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_number');
+            $table->string('transaction_number')->unique();
             $table->integer('marketing_id');
             $table->date('date');
-            $table->decimal('cargo_fee');
-            $table->decimal('total_balance');
-            $table->decimal('grand_total');
+            $table->bigInteger('cargo_fee');
+            $table->bigInteger('total_balance');
+            $table->bigInteger('grand_total');
             $table->timestamps();
         });
     }
