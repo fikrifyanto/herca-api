@@ -18,12 +18,16 @@ class TransactionFactory extends Factory
     {
         static $trxNumber = 1;
 
+        $cargoFee = $this->generateRandomPrice();
+        $totalBalance = $this->generateRandomPrice();
+        $grandTotal = $cargoFee + $totalBalance;
+
         return [
             'transaction_number' => 'TRX' . str_pad($trxNumber++, 3, '0', STR_PAD_LEFT),
             'date' => fake()->dateTimeBetween(now()->startOfYear(), now()->endOfYear())->format('Y-m-d'),
-            'cargo_fee' => $this->generateRandomPrice(),
-            'total_balance' => $this->generateRandomPrice(),
-            'grand_total' => $this->generateRandomPrice(),
+            'cargo_fee' => $cargoFee,
+            'total_balance' => $totalBalance,
+            'grand_total' => $grandTotal,
         ];
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CommitionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MarketingController;
 use App\Http\Controllers\Api\TransactionController;
@@ -17,3 +18,4 @@ use App\Http\Controllers\Api\TransactionController;
 
 Route::apiResource('marketing', MarketingController::class);
 Route::apiResource('transaction', TransactionController::class);
+Route::get('commition/{marketing}', CommitionController::class);
