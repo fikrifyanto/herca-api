@@ -41,7 +41,7 @@ class TransactionFactory extends Factory
      */
     protected function generateRandomPrice()
     {
-        $increments = [1000, 10000, 100000, 1000000];
+        $increments = [1000000, 10000000, 100000000];
         $baseFee = $this->faker->numberBetween(1, 10) * 100;
 
         return $baseFee + $this->faker->randomElement($increments);

@@ -31,9 +31,8 @@ class PaymentController extends Controller
     public function store(PaymentRequest $request, $transactionId): JsonResponse
     {
         try {
-            $currentLength = Payment::count();
-
             $payment = new Payment;
+            $payment->transaction_id = $request->transaction_id;
             $payment->nominal = $request->nominal;
             $payment->save();
 
@@ -70,10 +69,8 @@ class PaymentController extends Controller
     {
         try {
             $payment = Payment::find($id);
-            $payment->date = $request->date;
-            $payment->cargo_fee = $request->cargo_fee;
-            $payment->total_balance = $request->total_balance;
-            $payment->grand_total = $request->grand_total;
+            $payment->transaction_id = $request->transaction_id;
+            $payment->nominal = $request->nominal;
             $payment->save();
 
             return response()->json(['message' => 'Berhasil mengupdate pembayaran!'], 200);

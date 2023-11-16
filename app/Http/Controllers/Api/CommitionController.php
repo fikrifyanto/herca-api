@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Marketing;
+use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -12,23 +14,13 @@ class CommitionController extends Controller
     public function __invoke(Request $request)
     {
         try {
-            $month = $request->input('month', now());
-            $year = $request->input('year', now());
-
-            if (!$month || !$year) {
-                $marketings = Marketing::with('transaction')->get();
-            } else {
-                $marketings = Marketing::with(['transaction' => function ($query) use ($month, $year) {
-                    $query->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year);
-                }])->get();
-            }
+            $marketings = Marketing::with('transaction')->get();
 
             $commitions = $marketings->map(function ($marketing) {
                 $marketing->omzet = $marketing->transaction->sum('grand_total');
                 $marketing->commitionPercent = $this->getCommitionPercent($marketing->omzet);
                 $marketing->commitionNominal = ($marketing->omzet / 100) * $marketing->commitionPercent;
-                $marketing->month = $marketing->created_at->format('F');
+                $marketing->month = Carbon::parse($marketing->transaction->first()->date)->format('F Y');
                 unset($marketing->transaction);
                 return $marketing;
             });

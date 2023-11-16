@@ -16,7 +16,7 @@ class TransactionController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $transactions = Transaction::with('payment')->paginate();
+            $transactions = Transaction::with('payment')->orderBy('created_at', 'desc')->paginate();
             $transactionResource = TransactionResource::collection($transactions);
 
             return response()->json(['message' => 'Berhasil menampilkan data transaksi!', 'data' => $transactionResource], 200);
@@ -34,12 +34,13 @@ class TransactionController extends Controller
             $currentLength = Transaction::count();
 
             $transaction = new Transaction;
-            $transaction->marketing_id = 1;
+            $transaction->marketing_id = $request->marketing_id;
             $transaction->transaction_number = $this->generateTransactionNumber($currentLength + 1);
             $transaction->date = $request->date;
             $transaction->cargo_fee = $request->cargo_fee;
             $transaction->total_balance = $request->total_balance;
             $transaction->grand_total = $request->grand_total;
+            $transaction->type = $request->type;
             $transaction->save();
 
             return response()->json(['message' => 'Berhasil menambahkan transaksi!'], 200);
@@ -75,10 +76,12 @@ class TransactionController extends Controller
     {
         try {
             $transaction = Transaction::find($id);
+            $transaction->marketing_id = $request->marketing_id;
             $transaction->date = $request->date;
             $transaction->cargo_fee = $request->cargo_fee;
             $transaction->total_balance = $request->total_balance;
             $transaction->grand_total = $request->grand_total;
+            $transaction->type = $request->type;
             $transaction->save();
 
             return response()->json(['message' => 'Berhasil mengupdate transaksi!'], 200);
