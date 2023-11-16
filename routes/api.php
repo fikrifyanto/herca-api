@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CommitionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MarketingController;
+use App\Http\Controllers\Api\OmzetController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\TransactionController;
 
@@ -20,5 +21,5 @@ use App\Http\Controllers\Api\TransactionController;
 Route::apiResource('marketing', MarketingController::class);
 Route::apiResource('transaction', TransactionController::class);
 Route::get('commition', CommitionController::class);
-Route::get('omzet', CommitionController::class);
+Route::get('omzet', OmzetController::class);
 Route::apiResource('payment/{transactionId}', PaymentController::class);
