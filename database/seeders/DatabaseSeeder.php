@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         Marketing::factory(10)->create()->each(function ($marketing) {
             Transaction::factory(3)->create(['marketing_id' => $marketing->id])->each(function ($transaction) {
-                if ($transaction->type = 'cash') {
+                if ($transaction->type == 'cash') {
                     Payment::create([
                         'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total
                     ]);
