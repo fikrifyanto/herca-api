@@ -28,6 +28,7 @@ class TransactionFactory extends Factory
             'cargo_fee' => $cargoFee,
             'total_balance' => $totalBalance,
             'grand_total' => $grandTotal,
+            'type' => fake()->randomElement(['cash', 'credit'])
         ];
     }
 

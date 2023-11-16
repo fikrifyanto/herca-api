@@ -18,4 +18,4 @@ use App\Http\Controllers\Api\TransactionController;
 
 Route::apiResource('marketing', MarketingController::class);
 Route::apiResource('transaction', TransactionController::class);
-Route::get('commition/{marketing}', CommitionController::class);
+Route::get('commition', CommitionController::class);

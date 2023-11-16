@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('cargo_fee');
             $table->bigInteger('total_balance');
             $table->bigInteger('grand_total');
+            $table->enum('type', ['cash', 'credit']);
             $table->timestamps();
         });
     }
