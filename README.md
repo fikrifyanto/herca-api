@@ -18,7 +18,7 @@ Before you begin, ensure that you have the following installed on your system:
 Clone the Laravel repository using Git:
 
 ```bash
-git clone https://github.com/laravel/laravel.git your_project_name
+git clone https://github.com/fikrifyanto/herca-api.git herca_api
 ```
 
 ### Step 2: Navigate to the Project Directory
@@ -26,7 +26,7 @@ git clone https://github.com/laravel/laravel.git your_project_name
 Once you have cloned the Laravel repository, navigate to the project directory using the following command:
 
 ```bash
-cd your_project_name
+cd herca_api
 ```
 
 ### Step 3: Install Dependencies
@@ -61,6 +61,14 @@ Run the database migrations:
 
 ```bash
 php artisan migrate
+```
+
+### Step 7: Run Seeder
+
+Run the database seeder:
+
+```bash
+php artisan db:seed
 ```
 
 ### Step 7: Start the Development Server
