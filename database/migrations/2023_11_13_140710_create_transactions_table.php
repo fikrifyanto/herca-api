@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('total_balance');
             $table->bigInteger('grand_total');
             $table->enum('type', ['cash', 'credit']);
+            $table->enum('status', ['paid', 'unpaid']);
             $table->timestamps();
         });
     }

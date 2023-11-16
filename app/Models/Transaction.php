@@ -13,4 +13,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(Marketing::class, 'id', 'marketing_id');
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'transaction_id', 'id');
+    }
 }

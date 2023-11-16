@@ -16,7 +16,7 @@ class TransactionController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $transactions = Transaction::paginate();
+            $transactions = Transaction::with('payment')->paginate();
             $transactionResource = TransactionResource::collection($transactions);
 
             return response()->json(['message' => 'Berhasil menampilkan data transaksi!', 'data' => $transactionResource], 200);
