@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
                     Payment::create([
                         'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total
                     ]);
-                } else if ($transaction->type == 'credit' && $transaction->status == 'unpaid') {
+                } else if ($transaction->type == 'credit' && $transaction->status == 'paid') {
                     Payment::create([
                         'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 10)
                     ]);
