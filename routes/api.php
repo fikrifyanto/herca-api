@@ -20,4 +20,5 @@ use App\Http\Controllers\Api\TransactionController;
 Route::apiResource('marketing', MarketingController::class);
 Route::apiResource('transaction', TransactionController::class);
 Route::get('commition', CommitionController::class);
+Route::get('omzet', CommitionController::class);
 Route::apiResource('payment/{transactionId}', PaymentController::class);

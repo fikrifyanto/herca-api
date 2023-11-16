@@ -28,6 +28,7 @@ class CommitionController extends Controller
                 $marketing->omzet = $marketing->transaction->sum('grand_total');
                 $marketing->commitionPercent = $this->getCommitionPercent($marketing->omzet);
                 $marketing->commitionNominal = ($marketing->omzet / 100) * $marketing->commitionPercent;
+                $marketing->month = $marketing->created_at->format('F');
                 unset($marketing->transaction);
                 return $marketing;
             });
