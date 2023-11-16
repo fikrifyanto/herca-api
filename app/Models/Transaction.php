@@ -11,7 +11,7 @@ class Transaction extends Model
 
     public function marketing()
     {
-        return $this->belongsTo(Marketing::class, 'id', 'marketing_id');
+        return $this->hasOne(Marketing::class, 'id', 'marketing_id');
     }
 
     public function payment()

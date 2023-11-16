@@ -7,16 +7,23 @@ use App\Http\Requests\TransactionRequest;
 use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         try {
-            $transactions = Transaction::with('payment')->orderBy('created_at', 'desc')->paginate();
+            $transactions = Transaction::with('payment')->with('marketing')->orderBy('created_at', 'desc');
+
+            if ($request->keyword) {
+                $transactions = $transactions->where('transaction_number', 'like', "%$request->keyword%");
+            }
+
+            $transactions = $transactions->paginate();
             $transactionResource = TransactionResource::collection($transactions);
 
             return response()->json(['message' => 'Berhasil menampilkan data transaksi!', 'data' => $transactionResource], 200);
