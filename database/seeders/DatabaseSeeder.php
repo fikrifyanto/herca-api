@@ -22,17 +22,17 @@ class DatabaseSeeder extends Seeder
                     ]);
                 } else if ($transaction->type == 'credit' && $transaction->status == 'paid') {
                     Payment::create([
-                        'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 10)
+                        'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 20)
+                    ]);
+                    Payment::create([
+                        'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 80)
                     ]);
                 } else {
                     Payment::create([
-                        'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 50)
+                        'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 20)
                     ]);
                     Payment::create([
                         'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 40)
-                    ]);
-                    Payment::create([
-                        'transaction_id' => $transaction->id, 'nominal' => $transaction->grand_total - (($transaction->grand_total / 100) * 20)
                     ]);
                 }
             });
